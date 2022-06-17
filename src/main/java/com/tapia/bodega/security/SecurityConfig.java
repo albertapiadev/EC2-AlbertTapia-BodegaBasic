@@ -38,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeRequests()
 			.antMatchers("/crearToken").permitAll()
+				.antMatchers("/producto/listar").access("hasRole('USER')")
 				.antMatchers("/**").access("hasRole('ADMIN')")
-				.antMatchers(HttpMethod.GET, "/producto/listar").hasRole("USER")
 			.anyRequest()
 			.authenticated()
 			.and()
